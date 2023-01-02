@@ -1,0 +1,18 @@
+Rule 1 : Jar require => mysql-connector-java , hibernate-core.
+Rule 2 : Keep hibernate.cfg.xml in src/main/java folder.if hibernate.cfg.xml file place in some other package then mention those package as:
+         Configuration  con=new Configuration() ;  con.configure("mypackage/hibernate.cfg.xml"); remaining code are same.
+Rule 3 :Lazy loading(by default)  in Lazy loading if u fetch data from Db for Question class ( case of one to one mapping) it run query for question class only and when we fetch
+        Answer then it run query for Answer table.
+	Eager Loading : But incase of Eager loading when u fetch data from Db for Question class then it run query for both Question class as well as Answer class.
+Rule 4: Cascading in Hibernate: cascading normally use in one to many ,one to one and many to many etc. here when we save one Bean(Question) into data-base 
+       then automatically other Bean(Answer) save to data-base but we should apply cascading in @onetoone(cascade=CascadeType.All)into first Bean ,here all means u can update
+       delete etc in to first Bean then automatically second Bean updated , deleted of same id. 
+Rule 5: what cache? :  hibernate cache are two type First level and Second level .
+        First level given by defualt :First time u fetch data from Database and application store that Data in firstlevel Cache.
+	                              if u demand same data then application give data from first level cache instead of database.  
+				      Disadvantage:  once the session close ,firstlevel cache erase all data from cache
+	Second Level cache           :  In second level cache if u close session still data is present in second level cache and if u want same data in same session 
+	                                or other session then u will get data from cache instead of hiting database.    
+Rule 6: Second Level Cache : jar required: 1- ehcache  2- hibernate-ehcache(version same as hibernate-core).
+		
+         
